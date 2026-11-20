@@ -31,7 +31,7 @@ export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[82vh] md:min-h-[88vh] flex flex-col justify-center items-center bg-[#08090c] text-white overflow-hidden px-4 pt-12 pb-6 md:pt-16 md:pb-8"
+      className="relative w-full min-h-[82vh] md:min-h-[88vh] flex flex-col justify-center items-center bg-[#08090c] text-white overflow-hidden px-4 pt-20 pb-6 md:pt-24 md:pb-8"
     >
       {/* Skyline Image covers ONLY this first visual appearance */}
       <div className="absolute inset-0 z-0">
