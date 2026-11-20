@@ -2,12 +2,13 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Search, Send, ArrowRight } from "lucide-react";
+import { Search, Send } from "lucide-react";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { HERO_CONTENT } from "@/data/content";
+
+const serif = "var(--font-display, var(--font-serif, ui-serif, Georgia, serif))";
 
 export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string) => void }) {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[82vh] md:min-h-[88vh] flex flex-col justify-center items-center bg-[#08090c] text-white overflow-hidden px-4 pt-20 pb-6 md:pt-24 md:pb-8"
+      className="relative w-full min-h-[88vh] md:min-h-[92vh] flex flex-col items-center justify-start bg-[#08090c] text-white overflow-hidden px-4 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16"
     >
       {/* Skyline Image covers ONLY this first visual appearance */}
       <div className="absolute inset-0 z-0">
@@ -47,44 +48,51 @@ export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#08090c] via-[#08090c]/80 to-transparent pointer-events-none" />
       </div>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
-        {/* Top NRI Badge Pill */}
-        <div className="mb-5">
-          <Link
-            href={HERO_CONTENT.nriPill.href}
-            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs md:text-sm font-medium text-neutral-300 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
-          >
-            <span className="flex h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span>{HERO_CONTENT.nriPill.text}</span>
-            <ArrowRight className="h-3 w-3 text-neutral-400 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
+      {/* Large ambient background wordmark: full-width, capped height & max-width limit */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-[58px] sm:top-[68px] md:top-[74px] pointer-events-none select-none z-0 flex items-center justify-center overflow-hidden max-h-[85px] sm:max-h-[115px] md:max-h-[135px]"
+      >
+        <p
+          className="text-center tracking-[-0.035em] text-[clamp(64px,21.5vw,310px)] leading-[0.8] text-transparent select-none [background-clip:text] [-webkit-background-clip:text] [background-image:linear-gradient(to_bottom,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.07)_65%,rgba(255,255,255,0.015)_90%,transparent_100%)] w-[102vw] max-w-[1500px] whitespace-nowrap"
+          style={{ fontFamily: serif, fontWeight: 300 }}
+        >
+          PropCapital
+        </p>
+      </div>
 
+      <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center pt-14 sm:pt-16 md:pt-20">
         {/* Hero Title & Subtitle with Text Flip */}
         <motion.div
           style={{ opacity: headingOpacity, scale: headingScale }}
           className="w-full"
         >
-          <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-neutral-400 font-semibold block mb-2.5">
-            Next-Generation Property Intelligence
-          </span>
-
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-[-0.03em] text-white leading-[1.1] max-w-4xl mx-auto">
-            NCR&apos;s smartest property platform for{" "}
-            <LayoutTextFlip
-              words={[
-                "Luxury Living.",
-                "NRI Investors.",
-                "100% RERA Verified.",
-                "Zero Brokerage.",
-              ]}
-              duration={3000}
-              className="inline-block mt-1"
-              wordClassName="border-white/15 bg-neutral-900/90 text-white shadow-2xl"
-            />
+          <h1
+            style={{ fontFamily: serif, fontWeight: 360 }}
+            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl tracking-[-0.02em] leading-[1.18] max-w-5xl mx-auto"
+          >
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white/95 to-neutral-400/50">
+              NCR&apos;s smartest property platform
+            </span>
+            <span className="inline-flex items-center justify-center flex-wrap gap-x-3.5 gap-y-2 mt-1 sm:mt-2">
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-neutral-400/60 font-light">
+                for
+              </span>
+              <LayoutTextFlip
+                words={[
+                  "Luxury Living.",
+                  "NRI Investors.",
+                  "100% RERA Verified.",
+                  "Zero Brokerage.",
+                ]}
+                duration={3000}
+                className="inline-flex whitespace-nowrap not-italic"
+                wordClassName="border-white/15 bg-neutral-900/90 text-white shadow-2xl font-sans font-semibold text-2xl sm:text-4xl md:text-5xl whitespace-nowrap"
+              />
+            </span>
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto font-normal leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
             {HERO_CONTENT.subtitle}
           </p>
 
