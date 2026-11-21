@@ -107,11 +107,11 @@ export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string
           </div>
 
           {/* Typebar with Aceternity HoverBorderGradient */}
-          <div className="mt-7 max-w-2xl mx-auto">
+          <div className="mt-7 w-full max-w-2xl mx-auto">
             <HoverBorderGradient
               containerClassName="rounded-full w-full p-[1px] shadow-2xl"
               as="div"
-              className="w-full bg-[#14151a]/95 backdrop-blur-2xl rounded-full px-4 py-2 flex items-center gap-3 border border-white/10"
+              className="w-full bg-[#14151a]/95 backdrop-blur-2xl rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 border border-white/10"
             >
               <Search className="h-4 w-4 text-neutral-400 shrink-0" />
               <input
@@ -120,14 +120,14 @@ export function HeroFront({ onSelectPrompt }: { onSelectPrompt?: (prompt: string
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder={HERO_CONTENT.searchPlaceholder}
-                className="flex-1 bg-transparent text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none"
               />
               <button
                 onClick={() => handleSubmit()}
-                className="rounded-full bg-white text-black hover:bg-neutral-200 px-4 py-2 text-xs font-semibold flex items-center gap-1.5 transition-colors shrink-0"
+                className="rounded-full bg-white text-black hover:bg-neutral-200 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition-colors shrink-0 whitespace-nowrap"
               >
                 <span>{HERO_CONTENT.searchButton}</span>
-                <Send className="h-3 w-3" />
+                <Send className="h-3 w-3 shrink-0" />
               </button>
             </HoverBorderGradient>
 
